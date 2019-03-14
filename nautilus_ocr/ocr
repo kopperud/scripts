@@ -1,0 +1,13 @@
+#!/bin/bash
+echo $NAUTILUS_SCRIPT_SELECTED_FILE_PATHS
+echo "foo"
+#for item in "$NAUTILUS_SCRIPT_SELECTED_FILE_PATHS" 
+for item in "$@";
+do
+        echo "$OUT"
+        echo "$item"
+        OUT=$(echo "$item" | sed -e "s/.pdf/_ocr.pdf/")
+        ocrmypdf -j 32 --force-ocr $item $OUT
+
+done
+
